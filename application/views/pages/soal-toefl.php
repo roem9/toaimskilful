@@ -58,15 +58,15 @@
                             <?php else :?>
                                 <form action="<?= base_url()?>soal/add_jawaban" method="post" id="formSoal">
                             <?php endif;?>
-                                <?php if($tes['msg_opening'] != "") :?>
-                                    <div class="shadow card mb-3 soal">
-                                        <div class="card-body">
-                                            <?= $tes['msg_opening']?>
-                                        </div>
-                                    </div>
-                                <?php endif;?>
                                 <input type="hidden" name="id_tes" value="<?= $id?>">
                                 <div id="sesi-0">
+                                    <?php if($tes['msg_opening'] != "") :?>
+                                        <div class="shadow card mb-3 soal">
+                                            <div class="card-body">
+                                                <?= $tes['msg_opening']?>
+                                            </div>
+                                        </div>
+                                    <?php endif;?>
                                     <div class="card mb-3">
                                         <div class="card-header">
                                             <h3 class="card-title">Data Diri</h3>
