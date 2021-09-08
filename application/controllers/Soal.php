@@ -15,6 +15,11 @@ class Soal extends CI_Controller {
         ini_set('xdebug.var_display_max_data', '1024');
     }
 
+    public function config(){
+        $data = $this->Main_model->get_all("config");
+        return $data;
+    }
+    
     public function id($id_tes){
         // $tes = $this->Main_model->get_one("tes", ["md5(id_tes)" => $id_tes, "status" => "Berjalan"]);
         $tes = $this->Main_model->get_one("tes", ["md5(id_tes)" => $id_tes]);
@@ -327,7 +332,13 @@ class Soal extends CI_Controller {
             ];
         }
 
-        $this->Main_model->add_data("peserta_toefl", $data);
+        $id = $this->Main_model->add_data("peserta_toefl", $data);
+
+        // add barcode 
+            if($tes['tipe_tes'] == 'Tes TOEFL Aimskilful' || $tes['tipe_tes'] == 'Tes TOEFL Kolaborasi Perusahaan' || $tes['tipe_tes'] == 'Tes TOEFL Kolaborasi Universitas'){
+                $this->add_sertifikat_toefl($id);
+            }
+        // add barcode 
         
         $skor = skor($nilai_listening, $nilai_structure, $nilai_reading);
 
@@ -423,6 +434,58 @@ class Soal extends CI_Controller {
         $this->session->set_flashdata('pesan', $data);
 
         redirect(base_url("soal/id/".$id_tes));
+    }
+
+    public function add_sertifikat_toefl($id){
+        $config = $this->config();
+
+        // $id = $this->input->post("id");
+        // $sertifikat = $this->input->post("sertifikat");
+
+        $peserta = $this->Main_model->get_one("peserta_toefl", ["id" => $id]);
+        $tes = $this->Main_model->get_one("tes", ["id_tes" => $peserta['id_tes']]);
+        
+        $date = date('Y', strtotime($tes['tgl_tes']));
+
+        $this->db->select("CONVERT(no_doc, UNSIGNED INTEGER) AS num");
+        $this->db->from("peserta_toefl as a");
+        $this->db->join("tes as b", "a.id_tes = b.id_tes");
+        $this->db->where("YEAR(tgl_tes)", $date);
+        $this->db->order_by("num", "DESC");
+        $data = $this->db->get()->row_array();
+
+        if($data) $no = $data['num']+1;
+        else $no = 1;
+
+        if($no > 0 && $no < 10) $no_doc = "000".$no;
+        elseif($no >= 10 && $no < 100) $no_doc = "00".$no;
+        elseif($no >= 100 && $no < 1000) $no_doc = "0".$no;
+        elseif($no >= 1000) $no_doc = $no;
+        
+        $this->load->library('qrcode/ciqrcode'); //pemanggilan library QR CODE
+
+        $config['cacheable']    = true; //boolean, the default is true
+        $config['cachedir']     = './assets/'; //string, the default is application/cache/
+        $config['errorlog']     = './assets/'; //string, the default is application/logs/
+        $config['imagedir']     = './assets/qrcode/'; //direktori penyimpanan qr code
+        $config['quality']      = true; //boolean, the default is true
+        $config['size']         = '1024'; //interger, the default is 1024
+        $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+        $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+        $this->ciqrcode->initialize($config);
+
+        $image_name=$id.'.png'; //buat name dari qr code sesuai dengan nim
+
+        $params['data'] = $config[1]['value']."/sertifikat/no/".md5($id); //data yang akan di jadikan QR CODE
+        $params['level'] = 'H'; //H=High
+        $params['size'] = 10;
+        $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+
+        $data = $this->Main_model->edit_data("peserta_toefl", ["id" => $id], ["no_doc" => $no_doc]);
+        // if($data) return 1;
+        // else return 0;
     }
 
     public function tgl_indo($tgl){
