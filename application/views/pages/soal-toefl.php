@@ -1,7 +1,7 @@
 <?php $this->load->view("_partials/header")?>
     <div class="page page-center" id="login">
         <div class="container-tight py-4">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <div class="text-center mb-4">
                         <?php if($tes['tipe_tes'] == 'Tes TOEFL Kolaborasi Universitas' || $tes['tipe_tes'] == 'Tes TOEFL Kolaborasi Perusahaan') :?>
@@ -196,7 +196,7 @@
                                                     }?>
                                             <?php elseif($data['item'] == "audio") :
                                                 $item = '<center>
-                                                            <audio id="audio-'.$data['id_item'].'" class="audio" data-id="'.$data['id_item'].'"><source src="'.$link['value'].'/assets/myaudio/'.$data['data'].'" type="audio/mpeg"></audio>
+                                                            <audio id="audio-'.$data['id_item'].'" class="audio" data-id="'.$data['id_item'].'"><source src="'.$link['value'].'/assets/myaudio/'.$data['data'].'?t='.time().'" type="audio/mpeg"></audio>
                                                             <progress id="seekbar-'.$data['id_item'].'" value="0" max="1" style="width:100%;"></progress><br>
                                                             <button class="btn btn-success btnAudio" data-id="'.$data['id_item'].'" type="button">'.tablerIcon("player-play", "").' play</button>
                                                             <p><small class="text-danger"><i>note : perhatian, audio hanya dapat diputar satu kali</i></small></p>
@@ -450,6 +450,12 @@
             }).then(function (result) {
                 if (result.value) {
                     
+                    var audios = document.getElementsByTagName('audio');  
+                    for(var i = 0, len = audios.length; i < len;i++){  
+                        if(audios[i]){  
+                            audios[i].pause();  
+                        }  
+                    } 
                     // mulai hitung waktu
                     if(click == false){
                         sec = 80 * 60,

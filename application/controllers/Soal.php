@@ -437,7 +437,7 @@ class Soal extends CI_Controller {
     }
 
     public function add_sertifikat_toefl($id){
-        $config = $this->config();
+        $data_config = $this->config();
 
         // $id = $this->input->post("id");
         // $sertifikat = $this->input->post("sertifikat");
@@ -465,9 +465,15 @@ class Soal extends CI_Controller {
         $this->load->library('qrcode/ciqrcode'); //pemanggilan library QR CODE
 
         $config['cacheable']    = true; //boolean, the default is true
-        $config['cachedir']     = './assets/'; //string, the default is application/cache/
-        $config['errorlog']     = './assets/'; //string, the default is application/logs/
-        $config['imagedir']     = './assets/qrcode/'; //direktori penyimpanan qr code
+        
+        $config['cachedir']     = "../".$data_config[4]['value']."/assets/"; //string, the default is application/cache/
+        $config['errorlog']     = "../".$data_config[4]['value']."/assets/"; //string, the default is application/logs/
+        $config['imagedir']     = "../".$data_config[4]['value']."/assets/qrcode/"; //direktori penyimpanan qr code
+
+        // $config['cachedir']     = './assets/'; //string, the default is application/cache/
+        // $config['errorlog']     = './assets/'; //string, the default is application/logs/
+        // $config['imagedir']     = './assets/qrcode/'; //direktori penyimpanan qr code
+        
         $config['quality']      = true; //boolean, the default is true
         $config['size']         = '1024'; //interger, the default is 1024
         $config['black']        = array(224,255,255); // array, default is array(255,255,255)

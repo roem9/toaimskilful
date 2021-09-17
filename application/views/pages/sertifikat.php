@@ -12,6 +12,9 @@
                                 <?php if(isset($nama)) :?>
                                     <div class="card shadow mb-4">
                                         <div class="card-body text-gray-900">
+                                        <center>
+                                            <img src="<?= $link['value']?>/assets/img/logo.png?t=<?= time()?>" width=150 class="img-fluid mb-3" alt="">
+                                        </center>
                                         <!-- </div>
                                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> -->
                                             <h5 class="m-0 font-weight-bold text-dark">No. Sertifikat : </i><?= $no_doc?></h5>
@@ -31,11 +34,6 @@
                                             <center>
                                                 <p class="text-primary"><b>Sertifikat ini Valid dan ditandatangani dan disahkan Oleh : <br>Akhmad Affandi, S.Pd., MA TESOL</b></p>
                                             </center>
-                                            <center>
-                                                <img src="<?= base_url()?>/assets/img/ttd.png?t=<?= time()?>" width=150 class="img-fluid mb-3" alt="">
-                                            </center>
-
-                                            <!-- <p><small class="text-danger"><i>Catatan : Data diatas adalah data tes TOEFL peserta yang sebenar-benarnya. Dan tidak ada pengurangan dan penambahan nilai sedikitpun</i></small></p> -->
                                         </div>
                                     </div>
                                 <?php else :?>

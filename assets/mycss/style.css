@@ -16,3 +16,8 @@ body {
 	transform-origin: 50% 50%;
 	transform: rotate(0) translate(0,0);
 }
+
+body{
+	background: transparent url('../img/background.png');
+	background-size: cover;
+}
