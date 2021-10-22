@@ -83,6 +83,7 @@ class Soal extends CI_Controller {
                                 <option value=\"Kelengkapan berkas CPNS\">Kelengkapan berkas CPNS</option>
                                 <option value=\"Kelengkapan Berkas Lamaran Kerja\">Kelengkapan Berkas Lamaran Kerja</option>
                                 <option value=\"Latihan Soal sebelum test TOEFL ITP\">Latihan Soal sebelum test TOEFL ITP</option>
+                                <option value=\"Syarat Beasiswa\">Syarat Beasiswa</option>
                                 <option value=\"Lainnya\">Lainnya</option>
                             </select>
                             <label for=\"tujuan_tes\">Tujuan Mengikuti Tes TOEFL</label>
@@ -129,6 +130,7 @@ class Soal extends CI_Controller {
                                 <option value=\"Kelengkapan berkas CPNS\">Kelengkapan berkas CPNS</option>
                                 <option value=\"Kelengkapan Berkas Lamaran Kerja\">Kelengkapan Berkas Lamaran Kerja</option>
                                 <option value=\"Latihan Soal sebelum test TOEFL ITP\">Latihan Soal sebelum test TOEFL ITP</option>
+                                <option value=\"Syarat Beasiswa\">Syarat Beasiswa</option>
                                 <option value=\"Lainnya\">Lainnya</option>
                             </select>
                             <label for=\"tujuan_tes\">Tujuan Mengikuti Tes TOEFL</label>
