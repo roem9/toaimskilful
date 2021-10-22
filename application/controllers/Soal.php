@@ -125,8 +125,11 @@ class Soal extends CI_Controller {
                         <div class=\"form-floating mb-3\">
                             <select name=\"tujuan_tes\" class=\"form form-control required\">
                                 <option value=\"\">Pilih Tujuan</option>
-                                <option value=\"Male\">Male</option>
-                                <option value=\"Female\">Female</option>
+                                <option value=\"Syarat Lolos Seminar Proposal/hasil di Universitas\">Syarat Lolos Seminar Proposal/hasil di Universitas</option>
+                                <option value=\"Kelengkapan berkas CPNS\">Kelengkapan berkas CPNS</option>
+                                <option value=\"Kelengkapan Berkas Lamaran Kerja\">Kelengkapan Berkas Lamaran Kerja</option>
+                                <option value=\"Latihan Soal sebelum test TOEFL ITP\">Latihan Soal sebelum test TOEFL ITP</option>
+                                <option value=\"Lainnya\">Lainnya</option>
                             </select>
                             <label for=\"tujuan_tes\">Tujuan Mengikuti Tes TOEFL</label>
                         </div>
