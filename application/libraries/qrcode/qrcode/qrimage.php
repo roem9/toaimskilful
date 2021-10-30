@@ -26,7 +26,7 @@
 
     class QRimage {
         
-        public static $black = array(255,255,255);
+        public static $black = array(242,236,211);
         public static $white = array(0,0,0);
 
         //----------------------------------------------------------------------

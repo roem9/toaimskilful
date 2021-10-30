@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
-    <link rel="icon" href="<?= $link['value']?>/assets/img/logo.png?t=<?= time()?>" type="image/icon type">
+    <link rel="icon" href="<?= base_url()?>/assets/img/logo.png?t=<?= time()?>" type="image/icon type">
     <title><?= $title?></title>
 
     <!-- CSS files -->
